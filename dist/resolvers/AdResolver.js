@@ -11,8 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdResolver = void 0;
+const AdInput_1 = __importDefault(require("../inputs/AdInput"));
 const Ad_1 = require("../entities/Ad");
 const type_graphql_1 = require("type-graphql");
 let AdResolver = class AdResolver {
@@ -21,25 +25,30 @@ let AdResolver = class AdResolver {
             order: {
                 id: "DESC",
             },
+            relations: {}
         });
-        console.log(ads);
         return ads;
     }
     async getAdById(id) {
         const ad = await Ad_1.Ad.findOneByOrFail({ id: id });
         return ad;
     }
-    async createNewAd(title, description, owner, price, picture, location, createdAt) {
+    async createNewAd(newData) {
         const newAd = new Ad_1.Ad();
-        newAd.title = title;
-        newAd.description = description;
-        newAd.owner = owner;
-        newAd.price = price;
-        newAd.picture = picture;
-        newAd.location = location;
-        newAd.createdAt = createdAt;
+        newAd.title = newData.title;
+        newAd.description = newData.description;
+        newAd.owner = newData.owner;
+        newAd.price = newData.price;
+        newAd.location = newData.location;
+        newAd.createdAt = newData.createdAt;
+        newAd.category = newData.category;
         const adToSave = await newAd.save();
         return adToSave;
+    }
+    async removeAd(id) {
+        const adId = await Ad_1.Ad.findOneByOrFail({ id: id });
+        await Ad_1.Ad.remove(adId);
+        return `L'annonce ayant l'id ${adId} a bien été supprimée`;
     }
 };
 exports.AdResolver = AdResolver;
@@ -58,17 +67,18 @@ __decorate([
 ], AdResolver.prototype, "getAdById", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => Ad_1.Ad),
-    __param(0, (0, type_graphql_1.Arg)("title")),
-    __param(1, (0, type_graphql_1.Arg)("description")),
-    __param(2, (0, type_graphql_1.Arg)("owner")),
-    __param(3, (0, type_graphql_1.Arg)("price")),
-    __param(4, (0, type_graphql_1.Arg)("picture")),
-    __param(5, (0, type_graphql_1.Arg)("location")),
-    __param(6, (0, type_graphql_1.Arg)("createdAt")),
+    __param(0, (0, type_graphql_1.Arg)("data")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String, Number, String, String, Date]),
+    __metadata("design:paramtypes", [AdInput_1.default]),
     __metadata("design:returntype", Promise)
 ], AdResolver.prototype, "createNewAd", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Ad_1.Ad),
+    __param(0, (0, type_graphql_1.Arg)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], AdResolver.prototype, "removeAd", null);
 exports.AdResolver = AdResolver = __decorate([
     (0, type_graphql_1.Resolver)(Ad_1.Ad)
 ], AdResolver);

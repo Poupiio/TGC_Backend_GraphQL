@@ -1,3 +1,4 @@
+import AdInput from "../inputs/AdInput";
 import { Ad } from "../entities/Ad";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 
@@ -9,6 +10,9 @@ export class AdResolver {
          order: {
            id: "DESC",
          },
+         relations: {
+
+         }
       });
       return ads;
    }
@@ -20,25 +24,24 @@ export class AdResolver {
    }
 
    @Mutation(() => Ad)
-   async createNewAd(
-      @Arg("title") title: string,
-      @Arg("description") description: string,
-      @Arg("owner") owner: string,
-      @Arg("price") price: number,
-      @Arg("picture") picture: string,
-      @Arg("location") location: string,
-      @Arg("createdAt") createdAt: Date,
-   ) {
+   async createNewAd(@Arg("data") newData: AdInput) {
       const newAd = new Ad();
-      newAd.title = title;
-      newAd.description = description;
-      newAd.owner = owner;
-      newAd.price = price;
-      newAd.picture = picture;
-      newAd.location = location;
-      newAd.createdAt = createdAt;
+      newAd.title = newData.title;
+      newAd.description = newData.description;
+      newAd.owner = newData.owner;
+      newAd.price = newData.price;
+      newAd.location = newData.location;
+      newAd.createdAt = newData.createdAt;
+      newAd.category = newData.category;
 
       const adToSave = await newAd.save();
       return adToSave;
+   }
+
+   @Mutation(() => Ad)
+   async removeAd(@Arg("id") id: number) {
+      const adId = await Ad.findOneByOrFail({ id: id });
+      await Ad.remove(adId);
+      return `L'annonce ayant l'id ${adId} a bien été supprimée`;
    }
 }

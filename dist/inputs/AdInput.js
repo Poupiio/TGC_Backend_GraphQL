@@ -9,68 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Ad = void 0;
-const class_validator_1 = require("class-validator");
-const typeorm_1 = require("typeorm");
+const Category_1 = require("../entities/Category");
 const type_graphql_1 = require("type-graphql");
-const Category_1 = require("./Category");
-const Tag_1 = require("./Tag");
-let Ad = class Ad extends typeorm_1.BaseEntity {
+let AdInput = class AdInput {
 };
-exports.Ad = Ad;
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", String)
+], AdInput.prototype, "title", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], AdInput.prototype, "description", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], AdInput.prototype, "owner", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
-], Ad.prototype, "id", void 0);
+], AdInput.prototype, "price", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Ad.prototype, "title", void 0);
+], AdInput.prototype, "location", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", String)
-], Ad.prototype, "description", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Ad.prototype, "owner", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Ad.prototype, "price", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    (0, class_validator_1.MaxLength)(2000),
-    __metadata("design:type", String)
-], Ad.prototype, "picture", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Ad.prototype, "location", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
-], Ad.prototype, "createdAt", void 0);
+], AdInput.prototype, "createdAt", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => type_graphql_1.ID),
-    (0, typeorm_1.ManyToOne)(() => Category_1.Category, category => category.ads, { eager: true }),
     __metadata("design:type", Category_1.Category)
-], Ad.prototype, "category", void 0);
-__decorate([
-    (0, typeorm_1.ManyToMany)(() => Tag_1.Tag, tag => tag.ads, { eager: true }),
-    (0, typeorm_1.JoinTable)(),
-    __metadata("design:type", Array)
-], Ad.prototype, "tags", void 0);
-exports.Ad = Ad = __decorate([
-    (0, type_graphql_1.ObjectType)(),
-    (0, typeorm_1.Entity)()
-], Ad);
-//# sourceMappingURL=Ad.js.map
+], AdInput.prototype, "category", void 0);
+AdInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], AdInput);
+exports.default = AdInput;
+//# sourceMappingURL=AdInput.js.map

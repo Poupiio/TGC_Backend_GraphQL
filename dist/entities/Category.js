@@ -12,14 +12,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Category = void 0;
 const typeorm_1 = require("typeorm");
 const Ad_1 = require("./Ad");
+const type_graphql_1 = require("type-graphql");
 let Category = class Category extends typeorm_1.BaseEntity {
 };
 exports.Category = Category;
 __decorate([
+    (0, type_graphql_1.Field)(),
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], Category.prototype, "id", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
@@ -28,6 +31,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Category.prototype, "ads", void 0);
 exports.Category = Category = __decorate([
+    (0, type_graphql_1.ObjectType)(),
     (0, typeorm_1.Entity)()
 ], Category);
 //# sourceMappingURL=Category.js.map
