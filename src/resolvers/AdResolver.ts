@@ -10,9 +10,6 @@ export class AdResolver {
          order: {
            id: "DESC",
          },
-         relations: {
-
-         }
       });
       return ads;
    }
@@ -30,6 +27,7 @@ export class AdResolver {
       newAd.description = newData.description;
       newAd.owner = newData.owner;
       newAd.price = newData.price;
+      newAd.picture = newData.picture;
       newAd.location = newData.location;
       newAd.createdAt = newData.createdAt;
       newAd.category = newData.category;
@@ -41,7 +39,7 @@ export class AdResolver {
    @Mutation(() => Ad)
    async removeAd(@Arg("id") id: number) {
       const adId = await Ad.findOneByOrFail({ id: id });
-      await Ad.remove(adId);
-      return `L'annonce ayant l'id ${adId} a bien été supprimée`;
+      const adToRemove = await Ad.remove(adId);
+      return adToRemove;
    }
 }

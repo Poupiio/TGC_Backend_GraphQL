@@ -25,7 +25,6 @@ let AdResolver = class AdResolver {
             order: {
                 id: "DESC",
             },
-            relations: {}
         });
         return ads;
     }
@@ -39,6 +38,7 @@ let AdResolver = class AdResolver {
         newAd.description = newData.description;
         newAd.owner = newData.owner;
         newAd.price = newData.price;
+        newAd.picture = newData.picture;
         newAd.location = newData.location;
         newAd.createdAt = newData.createdAt;
         newAd.category = newData.category;
@@ -47,8 +47,8 @@ let AdResolver = class AdResolver {
     }
     async removeAd(id) {
         const adId = await Ad_1.Ad.findOneByOrFail({ id: id });
-        await Ad_1.Ad.remove(adId);
-        return `L'annonce ayant l'id ${adId} a bien été supprimée`;
+        const adToRemove = await Ad_1.Ad.remove(adId);
+        return adToRemove;
     }
 };
 exports.AdResolver = AdResolver;

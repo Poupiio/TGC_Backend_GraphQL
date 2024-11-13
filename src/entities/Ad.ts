@@ -1,6 +1,6 @@
 import { MaxLength } from "class-validator";
 import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { Field, ID, ObjectType } from 'type-graphql';
+import { Field, ObjectType } from 'type-graphql';
 import { Category } from "./Category";
 import { Tag } from "./Tag";
 
@@ -43,7 +43,7 @@ export class Ad extends BaseEntity {
    // 1er paramètre : callback vide qui pointe vers la table associée
    // 2ème paramètre (optionnel) : préciser le champ auquel on fait référence dans l'autre table : définition de la clé étrangère
    // ManyToOne : many ads appartiennent à one category
-   @Field(() => ID)
+   @Field(() => Category, { nullable: true })
    @ManyToOne(
       () => Category, category => category.ads, { eager: true }
    )

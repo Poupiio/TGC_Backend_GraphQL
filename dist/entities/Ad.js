@@ -60,7 +60,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Ad.prototype, "createdAt", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => type_graphql_1.ID),
+    (0, type_graphql_1.Field)(() => Category_1.Category, { nullable: true }),
     (0, typeorm_1.ManyToOne)(() => Category_1.Category, category => category.ads, { eager: true }),
     __metadata("design:type", Category_1.Category)
 ], Ad.prototype, "category", void 0);

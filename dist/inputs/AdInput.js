@@ -27,6 +27,10 @@ __decorate([
 ], AdInput.prototype, "owner", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], AdInput.prototype, "picture", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
 ], AdInput.prototype, "price", void 0);
 __decorate([
