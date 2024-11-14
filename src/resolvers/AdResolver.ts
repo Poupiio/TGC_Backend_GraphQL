@@ -1,6 +1,7 @@
 import AdInput from "../inputs/AdInput";
 import { Ad } from "../entities/Ad";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import UpdateAdInput from "../inputs/UpdateAdInput";
 
 @Resolver(Ad)
 export class AdResolver {
@@ -36,16 +37,15 @@ export class AdResolver {
       return adToSave;
    }
 
-   @Mutation(() => Ad)
+   @Mutation(() => String)
    async removeAd(@Arg("id") id: number) {
-      const adId = await Ad.findOneByOrFail({ id: id });
-      const adToRemove = await Ad.remove(adId);
-      return adToRemove;
+      await Ad.delete(id);
+      return "The ad has been successfully deleted!";
    }
 
    @Mutation(() => Ad)
-   async updateAd(@Arg("id") id: number, @Arg("data") dataToUpdate: AdInput) {
-      let adToUpdate = await Ad.findOneByOrFail({ id: id });
+   async updateAd(@Arg("data") dataToUpdate: UpdateAdInput) {
+      let adToUpdate = await Ad.findOneByOrFail({ id: dataToUpdate.id });
       adToUpdate = Object.assign(adToUpdate, dataToUpdate);
    
       const adUpdated = await adToUpdate.save();

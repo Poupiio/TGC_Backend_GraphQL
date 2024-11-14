@@ -19,6 +19,7 @@ exports.AdResolver = void 0;
 const AdInput_1 = __importDefault(require("../inputs/AdInput"));
 const Ad_1 = require("../entities/Ad");
 const type_graphql_1 = require("type-graphql");
+const UpdateAdInput_1 = __importDefault(require("../inputs/UpdateAdInput"));
 let AdResolver = class AdResolver {
     async getAllAds() {
         const ads = await Ad_1.Ad.find({
@@ -46,12 +47,11 @@ let AdResolver = class AdResolver {
         return adToSave;
     }
     async removeAd(id) {
-        const adId = await Ad_1.Ad.findOneByOrFail({ id: id });
-        const adToRemove = await Ad_1.Ad.remove(adId);
-        return adToRemove;
+        await Ad_1.Ad.delete(id);
+        return "The ad has been successfully deleted!";
     }
-    async updateAd(id, dataToUpdate) {
-        let adToUpdate = await Ad_1.Ad.findOneByOrFail({ id: id });
+    async updateAd(dataToUpdate) {
+        let adToUpdate = await Ad_1.Ad.findOneByOrFail({ id: dataToUpdate.id });
         adToUpdate = Object.assign(adToUpdate, dataToUpdate);
         const adUpdated = await adToUpdate.save();
         return adUpdated;
@@ -79,7 +79,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AdResolver.prototype, "createNewAd", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => Ad_1.Ad),
+    (0, type_graphql_1.Mutation)(() => String),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -87,10 +87,9 @@ __decorate([
 ], AdResolver.prototype, "removeAd", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => Ad_1.Ad),
-    __param(0, (0, type_graphql_1.Arg)("id")),
-    __param(1, (0, type_graphql_1.Arg)("data")),
+    __param(0, (0, type_graphql_1.Arg)("data")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, AdInput_1.default]),
+    __metadata("design:paramtypes", [UpdateAdInput_1.default]),
     __metadata("design:returntype", Promise)
 ], AdResolver.prototype, "updateAd", null);
 exports.AdResolver = AdResolver = __decorate([
