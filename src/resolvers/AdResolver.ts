@@ -42,4 +42,13 @@ export class AdResolver {
       const adToRemove = await Ad.remove(adId);
       return adToRemove;
    }
+
+   @Mutation(() => Ad)
+   async updateAd(@Arg("id") id: number, @Arg("data") dataToUpdate: AdInput) {
+      let adToUpdate = await Ad.findOneByOrFail({ id: id });
+      adToUpdate = Object.assign(adToUpdate, dataToUpdate);
+   
+      const adUpdated = await adToUpdate.save();
+      return adUpdated;
+   }
 }

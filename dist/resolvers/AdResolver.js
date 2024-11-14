@@ -50,6 +50,12 @@ let AdResolver = class AdResolver {
         const adToRemove = await Ad_1.Ad.remove(adId);
         return adToRemove;
     }
+    async updateAd(id, dataToUpdate) {
+        let adToUpdate = await Ad_1.Ad.findOneByOrFail({ id: id });
+        adToUpdate = Object.assign(adToUpdate, dataToUpdate);
+        const adUpdated = await adToUpdate.save();
+        return adUpdated;
+    }
 };
 exports.AdResolver = AdResolver;
 __decorate([
@@ -79,6 +85,14 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], AdResolver.prototype, "removeAd", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Ad_1.Ad),
+    __param(0, (0, type_graphql_1.Arg)("id")),
+    __param(1, (0, type_graphql_1.Arg)("data")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, AdInput_1.default]),
+    __metadata("design:returntype", Promise)
+], AdResolver.prototype, "updateAd", null);
 exports.AdResolver = AdResolver = __decorate([
     (0, type_graphql_1.Resolver)(Ad_1.Ad)
 ], AdResolver);
