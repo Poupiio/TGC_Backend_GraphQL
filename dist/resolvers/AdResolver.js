@@ -20,6 +20,7 @@ const AdInput_1 = __importDefault(require("../inputs/AdInput"));
 const Ad_1 = require("../entities/Ad");
 const type_graphql_1 = require("type-graphql");
 const UpdateAdInput_1 = __importDefault(require("../inputs/UpdateAdInput"));
+const Picture_1 = require("../entities/Picture");
 let AdResolver = class AdResolver {
     async getAllAds() {
         const ads = await Ad_1.Ad.find({
@@ -34,15 +35,15 @@ let AdResolver = class AdResolver {
         return ad;
     }
     async createNewAd(newData) {
-        const newAd = new Ad_1.Ad();
-        newAd.title = newData.title;
-        newAd.description = newData.description;
-        newAd.owner = newData.owner;
-        newAd.price = newData.price;
-        newAd.picture = newData.picture;
-        newAd.location = newData.location;
-        newAd.createdAt = newData.createdAt;
-        newAd.category = newData.category;
+        const pictures = [];
+        if (newData.picturesUrl) {
+            newData.picturesUrl.forEach(el => {
+                const newPicture = new Picture_1.Picture();
+                newPicture.url = el;
+                pictures.push(newPicture);
+            });
+        }
+        const newAd = Ad_1.Ad.create(Object.assign(Object.assign({}, newData), { pictures }));
         const adToSave = await newAd.save();
         return adToSave;
     }

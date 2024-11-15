@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ad = void 0;
-const class_validator_1 = require("class-validator");
 const typeorm_1 = require("typeorm");
 const type_graphql_1 = require("type-graphql");
 const Category_1 = require("./Category");
 const Tag_1 = require("./Tag");
+const Picture_1 = require("./Picture");
 let Ad = class Ad extends typeorm_1.BaseEntity {
 };
 exports.Ad = Ad;
@@ -44,11 +44,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Ad.prototype, "price", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    (0, class_validator_1.MaxLength)(2000),
-    __metadata("design:type", String)
-], Ad.prototype, "picture", void 0);
+    (0, type_graphql_1.Field)(() => [Picture_1.Picture]),
+    (0, typeorm_1.OneToMany)(() => Picture_1.Picture, (picture) => picture.ad, {
+        cascade: true,
+        eager: true,
+    }),
+    __metadata("design:type", Array)
+], Ad.prototype, "pictures", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
     (0, typeorm_1.Column)(),

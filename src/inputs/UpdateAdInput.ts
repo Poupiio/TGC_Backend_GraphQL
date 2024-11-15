@@ -8,28 +8,28 @@ class UpdateAdInput implements Partial<Ad> {
    id: number;
 
    @Field({ nullable: true })
-   title: string;
+   title?: string;
 
    @Field({ nullable: true })
    description?: string;
 
    @Field({ nullable: true })
-   owner: string;
+   owner?: string;
+
+   @Field(() => [String], { nullable: true })
+   picturesUrls?: string[];
 
    @Field({ nullable: true })
-   picture: string;
+   price?: number;
 
    @Field({ nullable: true })
-   price: number;
+   location?: string;
 
    @Field({ nullable: true })
-   location: string;
-
-   @Field({ nullable: true })
-   createdAt: Date;
+   createdAt?: Date;
 
    @Field(() => ID, { nullable: true })
-   category: Category;
+   category?: Category;
 }
 
 export default UpdateAdInput;

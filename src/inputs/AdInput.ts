@@ -1,4 +1,4 @@
-import { Ad } from "src/entities/Ad";
+import { Ad } from "../entities/Ad";
 import { Category } from "../entities/Category";
 import { Field, ID, InputType } from "type-graphql";
 
@@ -12,10 +12,7 @@ class AdInput implements Partial<Ad> {
 
    @Field()
    owner: string;
-
-   @Field()
-   picture: string;
-
+   
    @Field()
    price: number;
 
@@ -27,6 +24,9 @@ class AdInput implements Partial<Ad> {
 
    @Field(() => ID)
    category: Category;
+
+   @Field(() => [String], { nullable: true })
+   picturesUrl?: string[];
 }
 
 export default AdInput;

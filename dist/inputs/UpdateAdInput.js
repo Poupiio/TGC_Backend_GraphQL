@@ -30,9 +30,9 @@ __decorate([
     __metadata("design:type", String)
 ], UpdateAdInput.prototype, "owner", void 0);
 __decorate([
-    (0, type_graphql_1.Field)({ nullable: true }),
-    __metadata("design:type", String)
-], UpdateAdInput.prototype, "picture", void 0);
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], UpdateAdInput.prototype, "picturesUrls", void 0);
 __decorate([
     (0, type_graphql_1.Field)({ nullable: true }),
     __metadata("design:type", Number)

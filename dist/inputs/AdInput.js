@@ -27,10 +27,6 @@ __decorate([
 ], AdInput.prototype, "owner", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    __metadata("design:type", String)
-], AdInput.prototype, "picture", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
 ], AdInput.prototype, "price", void 0);
 __decorate([
@@ -45,6 +41,10 @@ __decorate([
     (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     __metadata("design:type", Category_1.Category)
 ], AdInput.prototype, "category", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], AdInput.prototype, "picturesUrl", void 0);
 AdInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], AdInput);
