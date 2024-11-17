@@ -67,7 +67,8 @@ __decorate([
     __metadata("design:type", Category_1.Category)
 ], Ad.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => Tag_1.Tag, tag => tag.ads, { eager: true }),
+    (0, type_graphql_1.Field)(() => [Tag_1.Tag], { nullable: true }),
+    (0, typeorm_1.ManyToMany)(() => Tag_1.Tag, tag => tag.ads, { eager: true, cascade: true }),
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], Ad.prototype, "tags", void 0);

@@ -51,10 +51,11 @@ export class Ad extends BaseEntity {
    )
    category: Category;
 
+   @Field(() => [Tag], { nullable: true })
    @ManyToMany(
-      () => Tag, tag => tag.ads, { eager: true }
+      () => Tag, tag => tag.ads, { eager: true, cascade: true }
    )
    @JoinTable()
    // @JoinTable obligatoire sur Ad ou Tag => définit la création de la table de jointure
-   tags: Tag[];
+   tags?: Tag[];
 }

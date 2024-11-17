@@ -7,13 +7,14 @@ import { dataSourceGoodCorner } from "./config/db";
 import { AdResolver } from "./resolvers/AdResolver";
 import { CategoryResolver } from "./resolvers/CategoryResolver";
 import { PictureResolver } from "./resolvers/PictureResolver";
+import { TagResolver } from "./resolvers/TagResolver";
 
 
 const start = async () => {
   await dataSourceGoodCorner.initialize();
   
   const schema = await buildSchema({
-    resolvers: [AdResolver, CategoryResolver, PictureResolver],
+    resolvers: [AdResolver, CategoryResolver, PictureResolver, TagResolver],
   });
   
   const server = new ApolloServer({ schema });

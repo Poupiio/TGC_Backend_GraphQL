@@ -9,29 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tag = void 0;
-const typeorm_1 = require("typeorm");
-const Ad_1 = require("./Ad");
 const type_graphql_1 = require("type-graphql");
-let Tag = class Tag extends typeorm_1.BaseEntity {
+let AdTagInput = class AdTagInput {
 };
-exports.Tag = Tag;
 __decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     __metadata("design:type", Number)
-], Tag.prototype, "id", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)({ unique: true }),
-    __metadata("design:type", String)
-], Tag.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.ManyToMany)(() => Ad_1.Ad, ad => ad.tags, { onDelete: "CASCADE" }),
-    __metadata("design:type", Array)
-], Tag.prototype, "ads", void 0);
-exports.Tag = Tag = __decorate([
-    (0, type_graphql_1.ObjectType)(),
-    (0, typeorm_1.Entity)()
-], Tag);
-//# sourceMappingURL=Tag.js.map
+], AdTagInput.prototype, "id", void 0);
+AdTagInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], AdTagInput);
+exports.default = AdTagInput;
+//# sourceMappingURL=AdTagInput.js.map
