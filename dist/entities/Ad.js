@@ -58,7 +58,7 @@ __decorate([
 ], Ad.prototype, "location", void 0);
 __decorate([
     (0, type_graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
 ], Ad.prototype, "createdAt", void 0);
 __decorate([

@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Field, ObjectType } from 'type-graphql';
 import { Category } from "./Category";
 import { Tag } from "./Tag";
@@ -39,7 +39,7 @@ export class Ad extends BaseEntity {
    location: string;
    
    @Field()
-   @Column()
+   @CreateDateColumn()
    createdAt: Date;
 
    // 1er paramètre : callback vide qui pointe vers la table associée

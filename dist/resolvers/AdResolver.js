@@ -20,7 +20,6 @@ const AdInput_1 = __importDefault(require("../inputs/AdInput"));
 const Ad_1 = require("../entities/Ad");
 const type_graphql_1 = require("type-graphql");
 const UpdateAdInput_1 = __importDefault(require("../inputs/UpdateAdInput"));
-const Picture_1 = require("../entities/Picture");
 let AdResolver = class AdResolver {
     async getAllAds() {
         const ads = await Ad_1.Ad.find({
@@ -35,16 +34,7 @@ let AdResolver = class AdResolver {
         return ad;
     }
     async createNewAd(newData) {
-        var _a;
-        const pictures = [];
-        if (newData.picturesUrl) {
-            newData.picturesUrl.forEach(el => {
-                const newPicture = new Picture_1.Picture();
-                newPicture.url = el;
-                pictures.push(newPicture);
-            });
-        }
-        const newAd = Ad_1.Ad.create(Object.assign(Object.assign({}, newData), { pictures, tags: (_a = newData.adTags) === null || _a === void 0 ? void 0 : _a.map((tag) => ({ id: parseInt(tag) })) }));
+        const newAd = Ad_1.Ad.create(Object.assign({}, newData));
         const adToSave = await newAd.save();
         return adToSave;
     }

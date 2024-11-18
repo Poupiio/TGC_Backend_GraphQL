@@ -11,6 +11,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Category_1 = require("../entities/Category");
 const type_graphql_1 = require("type-graphql");
+let PictureInput = class PictureInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", String)
+], PictureInput.prototype, "url", void 0);
+PictureInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], PictureInput);
+let TagInput = class TagInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(),
+    __metadata("design:type", Number)
+], TagInput.prototype, "id", void 0);
+TagInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], TagInput);
 let AdInput = class AdInput {
 };
 __decorate([
@@ -34,21 +52,17 @@ __decorate([
     __metadata("design:type", String)
 ], AdInput.prototype, "location", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(),
-    __metadata("design:type", Date)
-], AdInput.prototype, "createdAt", void 0);
-__decorate([
     (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     __metadata("design:type", Category_1.Category)
 ], AdInput.prototype, "category", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    (0, type_graphql_1.Field)(() => [PictureInput], { nullable: true }),
     __metadata("design:type", Array)
-], AdInput.prototype, "picturesUrl", void 0);
+], AdInput.prototype, "pictures", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    (0, type_graphql_1.Field)(() => [TagInput], { nullable: true }),
     __metadata("design:type", Array)
-], AdInput.prototype, "adTags", void 0);
+], AdInput.prototype, "tags", void 0);
 AdInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], AdInput);

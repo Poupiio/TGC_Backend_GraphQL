@@ -1,6 +1,6 @@
-import TagInput from "../inputs/TagInput";
+// import TagInput from "../inputs/TagInput";
 import { Tag } from "../entities/Tag";
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Query, Resolver } from "type-graphql";
 
 @Resolver(Tag)
 export class TagResolver {
@@ -16,26 +16,26 @@ export class TagResolver {
       return tag;
    }
 
-   @Mutation(() => Tag)
-   async createNewCategory(@Arg("data") newData: TagInput) {
-      const newTag = new Tag();
-      newTag.name = newData.name;
-      const tagUpdated = await newTag.save();
-      return tagUpdated;
-   }
+   // @Mutation(() => Tag)
+   // async createNewTag(@Arg("data") newData: Tag) {
+   //    const newTag = new Tag();
+   //    newTag.name = newData.name;
+   //    const tagUpdated = await newTag.save();
+   //    return tagUpdated;
+   // }
 
-   @Mutation(() => Tag)
-   async updateTag(@Arg("id") id: number, @Arg("data")dataToUpdate: TagInput) {
-      let tagToUpdate = await Tag.findOneByOrFail({ id: id });
-      tagToUpdate = Object.assign(tagToUpdate, dataToUpdate);
+   // @Mutation(() => Tag)
+   // async updateTag(@Arg("id") id: number, @Arg("data")dataToUpdate: TagInput) {
+   //    let tagToUpdate = await Tag.findOneByOrFail({ id: id });
+   //    tagToUpdate = Object.assign(tagToUpdate, dataToUpdate);
    
-      const tagUpdated = await tagToUpdate.save();
-      return tagUpdated;
-   }
+   //    const tagUpdated = await tagToUpdate.save();
+   //    return tagUpdated;
+   // }
 
-   @Mutation(() => String)
-   async removeCategory(@Arg("id") id: number) {
-      await Tag.delete(id);
-      return "The tag has been successfully deleted!";
-   }
+   // @Mutation(() => String)
+   // async removeTagCategory(@Arg("id") id: number) {
+   //    await Tag.delete(id);
+   //    return "The tag has been successfully deleted!";
+   // }
 }

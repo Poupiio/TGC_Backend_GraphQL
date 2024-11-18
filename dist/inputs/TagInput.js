@@ -14,8 +14,8 @@ let TagInput = class TagInput {
 };
 __decorate([
     (0, type_graphql_1.Field)(),
-    __metadata("design:type", String)
-], TagInput.prototype, "name", void 0);
+    __metadata("design:type", Number)
+], TagInput.prototype, "id", void 0);
 TagInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], TagInput);

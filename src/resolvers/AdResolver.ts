@@ -2,8 +2,6 @@ import AdInput from "../inputs/AdInput";
 import { Ad } from "../entities/Ad";
 import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import UpdateAdInput from "../inputs/UpdateAdInput";
-import { Picture } from "../entities/Picture";
-// import { Tag } from "../entities/Tag";
 
 @Resolver(Ad)
 export class AdResolver {
@@ -25,20 +23,8 @@ export class AdResolver {
 
    @Mutation(() => Ad)
    async createNewAd(@Arg("data") newData: AdInput) {
-      const pictures: Picture[] = [];
-
-      if (newData.picturesUrl) {
-         newData.picturesUrl.forEach(el => {
-            const newPicture = new Picture();
-            newPicture.url = el;
-            pictures.push(newPicture);
-         })
-      }
-
       const newAd = Ad.create({ 
-         ...newData,
-         pictures,
-         tags: newData.adTags?.map((tag) => ({ id: parseInt(tag) }))
+         ...newData
       });
 
       const adToSave = await newAd.save();
