@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:type", Date)
 ], UpdateAdInput.prototype, "createdAt", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => type_graphql_1.ID, { nullable: true }),
+    (0, type_graphql_1.Field)(() => type_graphql_1.ID),
     __metadata("design:type", Category_1.Category)
 ], UpdateAdInput.prototype, "category", void 0);
 UpdateAdInput = __decorate([

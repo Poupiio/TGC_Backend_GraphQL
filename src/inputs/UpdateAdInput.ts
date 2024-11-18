@@ -28,7 +28,7 @@ class UpdateAdInput implements Partial<Ad> {
    @Field({ nullable: true })
    createdAt?: Date;
 
-   @Field(() => ID, { nullable: true })
+   @Field(() => ID)
    category?: Category;
 }
 

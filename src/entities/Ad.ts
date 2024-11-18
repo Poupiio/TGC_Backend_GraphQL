@@ -45,7 +45,7 @@ export class Ad extends BaseEntity {
    // 1er paramètre : callback vide qui pointe vers la table associée
    // 2ème paramètre (optionnel) : préciser le champ auquel on fait référence dans l'autre table : définition de la clé étrangère
    // ManyToOne : many ads appartiennent à one category
-   @Field(() => Category, { nullable: true })
+   @Field(() => Category)
    @ManyToOne(
       () => Category, category => category.ads, { eager: true }
    )
