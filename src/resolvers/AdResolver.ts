@@ -9,7 +9,10 @@ export class AdResolver {
    async getAllAds() {
       const ads = await Ad.find({
          order: {
-           id: "DESC",
+            id: "DESC",
+            pictures: {
+               id: "DESC",
+            },
          },
       });
       return ads;
@@ -17,7 +20,14 @@ export class AdResolver {
 
    @Query(() => Ad)
    async getAdById(@Arg("id") id: number) {
-      const ad = await Ad.findOneByOrFail({ id: id });
+      const ad = await Ad.findOne({
+        where: { id: id },
+        order: { pictures: { id: "DESC" } },
+      });
+
+      if (ad === null) {
+        throw new Error("Cannot find ad with id " + id);
+      }
       return ad;
    }
 

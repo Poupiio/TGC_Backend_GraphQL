@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Ad.prototype, "price", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [Picture_1.Picture]),
+    (0, type_graphql_1.Field)(() => [Picture_1.Picture], { nullable: true }),
     (0, typeorm_1.OneToMany)(() => Picture_1.Picture, (picture) => picture.ad, {
         cascade: true,
         eager: true,

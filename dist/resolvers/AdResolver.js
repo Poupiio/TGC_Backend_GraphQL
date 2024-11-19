@@ -25,12 +25,21 @@ let AdResolver = class AdResolver {
         const ads = await Ad_1.Ad.find({
             order: {
                 id: "DESC",
+                pictures: {
+                    id: "DESC",
+                },
             },
         });
         return ads;
     }
     async getAdById(id) {
-        const ad = await Ad_1.Ad.findOneByOrFail({ id: id });
+        const ad = await Ad_1.Ad.findOne({
+            where: { id: id },
+            order: { pictures: { id: "DESC" } },
+        });
+        if (ad === null) {
+            throw new Error("Cannot find ad with id " + id);
+        }
         return ad;
     }
     async createNewAd(newData) {
