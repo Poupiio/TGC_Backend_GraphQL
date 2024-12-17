@@ -24,6 +24,8 @@ const start = async () => {
   });
   
   console.log(`🚀  Server ready at: ${url}`);
+  console.log("test live reload");
+  
 }
 
 start();
